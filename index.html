@@ -1,1 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+
+<title>Lord Krishna Motors</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#f4f4f4;
+}
+
+/* HERO */
+
+.hero{
+
+height:320px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+color:white;
+
+background:linear-gradient(-45deg,#000,#333,#111,#444);
+
+background-size:400% 400%;
+
+animation:gradient 12s infinite;
+
+text-align:center;
+
+}
+
+@keyframes gradient{
+
+0%{background-position:0%}
+
+50%{background-position:100%}
+
+100%{background-position:0%}
+
+}
+
+.hero h1{
+
+font-size:50px;
+
+}
+
+.hero p{
+
+margin-top:10px;
+
+font-size:18px;
+
+}
+
+/* SEARCH */
+
+.search{
+
+text-align:center;
+
+padding:20px;
+
+}
+
+.search input{
+
+padding:12px;
+
+width:280px;
+
+}
+
+/* CAR GRID */
+
+.cars{
+
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:20px;
+
+padding:20px;
+
+}
+
+.car{
+
+background:white;
+
+width:260px;
+
+border-radius:10px;
+
+overflow:hidden;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.2);
+
+transition:.3s;
+
+}
+
+.car:hover{
+
+transform:scale(1.05);
+
+}
+
+.car img{
+
+width:100%;
+
+height:160px;
+
+object-fit:cover;
+
+}
+
+.car h3{
+
+padding:10px;
+
+}
+
+.price{
+
+background:red;
+
+color:white;
+
+padding:6px;
+
+text-align:center;
+
+font-weight:bold;
+
+}
+
+/* EMI */
+
+.emi{
+
+background:white;
+
+padding:30px;
+
+text-align:center;
+
+}
+
+.emi input{
+
+padding:10px;
+
+margin:10px;
+
+}
+
+.emi button{
+
+padding:10px 20px;
+
+background:black;
+
+color:white;
+
+border:none;
+
+}
+
+/* SELL */
+
+.sell{
+
+background:white;
+
+padding:30px;
+
+text-align:center;
+
+}
+
+.sell input{
+
+padding:10px;
+
+margin:10px;
+
+}
+
+.sell button{
+
+padding:10px 20px;
+
+background:black;
+
+color:white;
+
+border:none;
+
+}
+
+/* REVIEWS */
+
+.reviews{
+
+background:white;
+
+padding:30px;
+
+text-align:center;
+
+}
+
+.star{
+
+color:gold;
+
+font-size:22px;
+
+}
+
+/* REVIEW FORM */
+
+.review-form{
+
+background:#fafafa;
+
+padding:30px;
+
+text-align:center;
+
+}
+
+.review-form input,
+
+.review-form textarea{
+
+padding:10px;
+
+margin:10px;
+
+width:250px;
+
+}
+
+/* MAP */
+
+.map{
+
+text-align:center;
+
+padding:30px;
+
+}
+
+/* CONTACT */
+
+.contact{
+
+background:#111;
+
+color:white;
+
+text-align:center;
+
+padding:30px;
+
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+
+position:fixed;
+
+bottom:20px;
+
+right:20px;
+
+background:#25D366;
+
+color:white;
+
+padding:15px 20px;
+
+border-radius:50px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.4);
+
+}
+
+</style>
+
+<script>
+
+/* SEARCH */
+
+function searchCar(){
+
+let input=document.getElementById("search").value.toLowerCase()
+
+let cars=document.getElementsByClassName("car")
+
+for(let i=0;i<cars.length;i++){
+
+let text=cars[i].innerText.toLowerCase()
+
+cars[i].style.display=text.includes(input)?"block":"none"
+
+}
+
+}
+
+/* EMI */
+
+function calculateEMI(){
+
+let P=document.getElementById("price").value
+
+let R=document.getElementById("rate").value/12/100
+
+let N=document.getElementById("years").value*12
+
+let emi=(P*R*(1+R)**N)/((1+R)**N-1)
+
+document.getElementById("emiResult").innerText=
+
+"Monthly EMI: ₹"+Math.round(emi)
+
+}
+
+/* REVIEW */
+
+function addReview(){
+
+let name=document.getElementById("name").value
+
+let text=document.getElementById("reviewText").value
+
+let html="<p><b>"+name+"</b>: "+text+"</p>"
+
+document.getElementById("reviewsList").innerHTML+=html
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="hero">
+
+<h1>LORD KRISHNA MOTORS</h1>
+
+<p>Buy & Sell Used Cars Easily</p>
+
+</div>
+
+<!-- SEARCH -->
+
+<div class="search">
+
+<input id="search" onkeyup="searchCar()" placeholder="Search Car Brand">
+
+</div>
+
+<!-- CARS -->
+
+<div class="cars">
+
+<div class="car">
+
+<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
+
+<h3>Hyundai i20</h3>
+
+<div class="price">₹4,20,000</div>
+
+</div>
+
+<div class="car">
+
+<img src="https://images.unsplash.com/photo-1493238792000-8113da705763">
+
+<h3>Maruti Swift</h3>
+
+<div class="price">₹3,50,000</div>
+
+</div>
+
+<div class="car">
+
+<img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c">
+
+<h3>Honda City</h3>
+
+<div class="price">₹5,80,000</div>
+
+</div>
+
+</div>
+
+<!-- EMI -->
+
+<div class="emi">
+
+<h2>Car EMI Calculator</h2>
+
+<input id="price" placeholder="Car Price">
+
+<input id="rate" placeholder="Interest Rate %">
+
+<input id="years" placeholder="Loan Years">
+
+<button onclick="calculateEMI()">Calculate EMI</button>
+
+<p id="emiResult"></p>
+
+</div>
+
+<!-- SELL -->
+
+<div class="sell">
+
+<h2>Sell Your Car</h2>
+
+<input placeholder="Car Brand"><br>
+
+<input placeholder="Model"><br>
+
+<input placeholder="Price"><br>
+
+<input placeholder="Phone"><br>
+
+<button>Submit</button>
+
+</div>
+
+<!-- REVIEWS -->
+
+<div class="reviews">
+
+<h2>Customer Reviews</h2>
+
+<p class="star">★★★★★</p>
+
+<p>"Best used car dealer." – Amit</p>
+
+<p class="star">★★★★☆</p>
+
+<p>"Smooth buying process." – Rahul</p>
+
+</div>
+
+<!-- REVIEW FORM -->
+
+<div class="review-form">
+
+<h2>Leave a Review</h2>
+
+<input id="name" placeholder="Name"><br>
+
+<textarea id="reviewText" placeholder="Review"></textarea><br>
+
+<button onclick="addReview()">Submit</button>
+
+<div id="reviewsList"></div>
+
+</div>
+
+<!-- MAP -->
+
+<div class="map">
+
+<h2>Our Location</h2>
+
+<iframe
+
+width="90%"
+
+height="320"
+
+style="border:0"
+
+loading="lazy"
+
+allowfullscreen
+
+src="https://maps.google.com/maps?q=Magpie%20Resort%20Faridabad&t=&z=13&ie=UTF8&iwloc=&output=embed">
+
+</iframe>
+
+</div>
+
+<!-- CONTACT -->
+
+<div class="contact">
+
+<h2>Contact Owner</h2>
+
+<p>Name: Rinku</p>
+
+<p>Phone: <a href="tel:9899411822" style="color:#ffcc00;">9899411822</a></p>
+
+<p>Location: Faridabad Mathura Road, Opposite Magpie Resort</p>
+
+</div>
+
+<!-- WHATSAPP -->
+
+<a class="whatsapp" href="https://wa.me/919899411822">
+
+WhatsApp
+
+</a>
+
+</body>
+
+</html>
